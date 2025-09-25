@@ -551,6 +551,7 @@ function App() {
           <Route path="/create" element={<InvoiceForm />} />
         </Routes>
       </BrowserRouter>
+      <Toaster position="top-right" />
     </div>
   );
 }
