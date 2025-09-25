@@ -17,12 +17,11 @@ body {
   min-height: 100vh;
 }
 
-/* Invoice Form Specific Styles */
-.invoice-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 2rem 0;
-  margin-bottom: 2rem;
+/* Professional Invoice Styling */
+.invoice-print {
+  background: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
 /* Card hover effects */
@@ -42,7 +41,7 @@ button:hover {
 }
 
 /* Form input focus styles */
-input:focus, textarea:focus {
+input:focus, textarea:focus, select:focus {
   outline: none;
   ring: 2px;
   ring-color: #4f46e5;
@@ -90,87 +89,33 @@ input:focus, textarea:focus {
   color: #dc2626;
 }
 
-/* Professional invoice styling */
-.invoice-summary {
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  border-radius: 12px;
-  padding: 1.5rem;
-  border: 1px solid #e2e8f0;
+/* Professional invoice table styling */
+.invoice-table {
+  border-collapse: collapse;
+  width: 100%;
 }
 
+.invoice-table th,
+.invoice-table td {
+  border: 1px solid #d1d5db;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.invoice-table th {
+  background-color: #f9fafb;
+  font-weight: 600;
+}
+
+/* Total amount styling */
 .total-amount {
   font-size: 1.25rem;
   font-weight: 700;
   color: #1e40af;
 }
 
-/* Mobile responsive adjustments */
-@media (max-width: 768px) {
-  .grid-cols-12 {
-    display: block;
-  }
-  
-  .grid-cols-12 > div {
-    margin-bottom: 1rem;
-  }
-  
-  .col-span-5, .col-span-2, .col-span-1 {
-    width: 100%;
-  }
-}
-
-/* Navigation styling */
-nav {
-  backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.95);
-  border-bottom: 1px solid rgba(229, 231, 235, 0.8);
-}
-
-/* Print styles for invoices */
-@media print {
-  nav, .no-print {
-    display: none !important;
-  }
-  
-  body {
-    background: white;
-  }
-  
-  .invoice-card {
-    box-shadow: none;
-    border: 1px solid #000;
-  }
-}
-
-/* Micro-interactions */
-.line-item-row {
-  transition: all 0.3s ease;
-  border-radius: 8px;
-  padding: 0.5rem;
-}
-
-.line-item-row:hover {
-  background-color: #f8fafc;
-}
-
-/* Custom button styles */
-.btn-primary {
-  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-  border: none;
-  color: white;
-  font-weight: 500;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-}
-
-.btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
-}
-
-/* Status indicators */
-.status-indicator {
+/* Status badges */
+.status-badge {
   display: inline-block;
   padding: 0.25rem 0.75rem;
   border-radius: 9999px;
@@ -193,4 +138,318 @@ nav {
 .status-overdue {
   background-color: #fecaca;
   color: #dc2626;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .grid-cols-12 {
+    display: block;
+  }
+  
+  .grid-cols-12 > div {
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+  
+  .col-span-1, .col-span-2, .col-span-4, .col-span-5 {
+    width: 100%;
+  }
+
+  .invoice-table {
+    font-size: 0.875rem;
+  }
+
+  .invoice-table th,
+  .invoice-table td {
+    padding: 6px 8px;
+  }
+}
+
+/* Navigation styling */
+nav {
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+}
+
+/* Print styles for invoices */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .invoice-print {
+    box-shadow: none !important;
+    border: 1px solid #000 !important;
+    margin: 0 !important;
+    padding: 20px !important;
+  }
+
+  nav, .navigation {
+    display: none !important;
+  }
+
+  .invoice-table {
+    border-collapse: collapse;
+  }
+
+  .invoice-table th,
+  .invoice-table td {
+    border: 1px solid #000 !important;
+    padding: 8px !important;
+  }
+
+  .invoice-table th {
+    background-color: #f5f5f5 !important;
+  }
+
+  /* Ensure proper page breaks */
+  .invoice-print {
+    page-break-inside: avoid;
+  }
+
+  .invoice-table {
+    page-break-inside: auto;
+  }
+
+  .invoice-table tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+}
+
+/* Micro-interactions */
+.line-item-row {
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+.line-item-row:hover {
+  background-color: #f8fafc;
+}
+
+/* Custom button styles for invoice actions */
+.invoice-action-btn {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  border: none;
+  color: white;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.invoice-action-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+/* GST calculation highlights */
+.gst-breakdown {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border-radius: 8px;
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+}
+
+.gst-amount {
+  color: #059669;
+  font-weight: 600;
+}
+
+/* Invoice header styling */
+.invoice-header {
+  background: linear-gradient(135deg, #1e40af 0%, #3730a3 100%);
+  color: white;
+  padding: 2rem;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 0;
+}
+
+/* Company letterhead styling */
+.company-letterhead {
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.company-letterhead h1 {
+  color: #1f2937;
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.company-details {
+  color: #6b7280;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* Invoice table enhancements */
+table.invoice-table {
+  margin: 1rem 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+table.invoice-table thead {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+/* Amount in words styling */
+.amount-in-words {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 1rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+/* Bank details section */
+.bank-details {
+  background-color: #f8fafc;
+  border-left: 4px solid #3b82f6;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+/* Terms and conditions styling */
+.terms-conditions {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 1rem;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+/* Digital signature note */
+.digital-signature {
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 6px;
+  padding: 0.75rem;
+  font-size: 0.875rem;
+  color: #1e40af;
+  margin-top: 1rem;
+}
+
+/* Enhanced form styling */
+.form-section {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 1.5rem;
+}
+
+.form-section h3 {
+  color: #1f2937;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Responsive invoice view */
+@media (max-width: 640px) {
+  .invoice-print {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+
+  .company-letterhead h1 {
+    font-size: 1.5rem;
+  }
+
+  .invoice-table {
+    font-size: 0.75rem;
+  }
+
+  .grid-responsive {
+    display: block;
+  }
+
+  .grid-responsive > div {
+    width: 100%;
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Professional color scheme */
+:root {
+  --primary-color: #1e40af;
+  --secondary-color: #3730a3;
+  --accent-color: #059669;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --border-color: #e5e7eb;
+  --background-light: #f8fafc;
+}
+
+/* Enhanced invoice totals section */
+.invoice-totals {
+  background: var(--background-light);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.invoice-totals .total-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.invoice-totals .total-row:last-child {
+  border-bottom: none;
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--primary-color);
+}
+
+/* Loading state improvements */
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e5e7eb;
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Focus improvements for accessibility */
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .invoice-table th,
+  .invoice-table td {
+    border: 2px solid #000;
+  }
+  
+  .company-letterhead {
+    border-bottom: 3px solid #000;
+  }
 }
